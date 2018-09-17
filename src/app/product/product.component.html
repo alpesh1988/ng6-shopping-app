@@ -1,4 +1,12 @@
-<p>
-  product works! Hi...
-  {{products}}
-</p>
+<div class="alp-product-list-container">  
+  <div class="row products">
+    <div *ngFor="let product of products.products">
+      <div class="col-lg-3">
+        <div class="alp-single-product-container">
+          <img class="alp-single-product-image" title="{{product.name}}" src="{{imageEndpoint}}{{product.images[0].url}}" alt="{{product.name}}" />
+          <div class="alp-single-product-name"> {{product.name}} </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
