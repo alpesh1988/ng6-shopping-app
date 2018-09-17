@@ -9,7 +9,7 @@ export class ProductService {
   
   constructor(private  httpClient:  HttpClient) { }
 
-  getProducts(){
-    return this.httpClient.get('/api?query=sugar:price-desc:category:1&currentPage=0&pageSize=36')
+  fetchProducts( url ) {
+    return this.httpClient.get( url );
   }
 }

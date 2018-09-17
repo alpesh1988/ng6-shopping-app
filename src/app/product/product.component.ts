@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../core/services/product.service';
 import { environment } from '../../environments/environment';
+import { AppConstants } from '../app.constant';
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -8,21 +10,44 @@ import { environment } from '../../environments/environment';
 })
 export class ProductComponent implements OnInit {
 
-  private  products:  Array<object> = [];
+  private products: any = {};
   public imageEndpoint: string = environment.imageEndpoint;
+  public query: string = AppConstants.query;
+  public totalItems: number = AppConstants.totalItems; // total items
+  public pageSize: number = AppConstants.pageSize; // items per page.
+  public currentPage: number = AppConstants.currentPage; // current page number
+  public category: number = AppConstants.category; // category all = 1
+  public maxSize: number = AppConstants.maxSize; // pagination max count
+  public sortOrder: string = AppConstants.sortOrder; // sortOrder default to relevance
   
   constructor( private _productService: ProductService ) { }
 
   ngOnInit() {
     console.log('host: ..', this.imageEndpoint )
-    this.getProducts();
+    this.fetchProducts();
   }
 
-  public getProducts(){
-    this._productService.getProducts().subscribe((products:  Array<object>) => {
+  public fetchProducts() {
+    let url = '';
+    url = AppConstants.fetchAPI;
+    url = url.replace( '[:query]', this.query );
+    url = url.replace( '[:sortOrder]', this.sortOrder );
+    url = url.replace( '[:category]', this.category.toString() );
+    url = url.replace( '[:currentPage]', this.currentPage.toString() );
+    url = url.replace( '[:pageSize]', this.pageSize.toString());
+    console.log( 'getProduct component URL: ', url );
+    this._productService.fetchProducts(url).subscribe(( products:  any ) => {
       console.log('Products data: ', products);
       this.products = products;
+      this.totalItems = products.pagination.totalResults;
+      this.pageSize = products.pagination.pageSize;
     });
+  }
+
+  public pageChanged(event: any): void {
+    console.log( 'currentPage clicked: ', event.page )
+    this.currentPage = event.page - 1;
+    this.fetchProducts();
   }
 
 }

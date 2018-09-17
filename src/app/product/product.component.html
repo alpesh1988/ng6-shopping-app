@@ -9,4 +9,7 @@
       </div>
     </div>
   </div>
+  <div class="alp-pagination">
+    <pagination [totalItems]="totalItems" [itemsPerPage]="pageSize" (pageChanged)="pageChanged($event)" [maxSize]="maxSize"></pagination>
+  </div>
 </div>
