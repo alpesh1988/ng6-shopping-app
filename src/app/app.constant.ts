@@ -19,5 +19,21 @@ export const AppConstants = {
     }, {
         label: '48 Articles',
         value: 48
+    }],
+    sortOrderConstant: [{
+        label: 'Relevance',
+        value: 'relevance'
+    }, {
+        label: 'Price (Ascending)',
+        value: 'price-asc'
+    }, {
+        label: 'Price (Descending)',
+        value: 'price-desc'
+    }, {
+        label: 'Name (Ascending)',
+        value: 'name-asc'
+    }, {
+        label: 'Name (Descending)',
+        value: 'name-desc'
     }]
 }

@@ -1,29 +1,44 @@
-<div class="alp-filtes-container">
+<div class="alp-filters-container text-right">
   <div class="row">
-    <div class="col-lg-12 text-right">
+    <div class="col-lg-12">
+      <div class="alp-sorting-filter">
         <div class="btn-group" dropdown>
-            <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
-                    aria-controls="dropdown-basic">
-              {{ pageSize }} articles <span class="caret"></span>
-            </button>
-            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
-                role="menu" aria-labelledby="button-basic">
-              <li *ngFor="let item of itemsPerPageConstant">
-                <a class="dropdown-item" (click)="changePageSize(item)">{{item.label}}</a>
-              </li>
-            </ul>
-          </div>
+          <button id="alp-sort-dropdown" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                  sortOrderaria-controls="alp-sort-dropdown-basic">
+            {{ sortOrderLabel }} <span class="caret"></span>
+          </button>
+          <ul id="alp-sort-dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
+              role="menu" aria-labelledby="button-basic">
+            <li *ngFor="let item of sortOrderConstant">
+              <a class="dropdown-item" (click)="changeSortOrder(item)">{{item.label}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="btn-group" dropdown>
+        <button id="alp-pagesize-dropdown" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                aria-controls="alp-pagesize-dropdown-basic">
+          {{ pageSize }} articles <span class="caret"></span>
+        </button>
+        <ul id="alp-pagesize-dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
+            role="menu" aria-labelledby="button-basic">
+          <li *ngFor="let item of itemsPerPageConstant">
+            <a class="dropdown-item" (click)="changePageSize(item)">{{item.label}}</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
-
+<div class="clear"></div>
 <div class="alp-product-list-container">  
   <div class="row products">
     <div *ngFor="let product of products.products">
       <div class="col-lg-3">
         <div class="alp-single-product-container">
           <img class="alp-single-product-image" title="{{product.name}}" src="{{imageEndpoint}}{{product.images[0].url}}" alt="{{product.name}}" />
-          <div class="alp-single-product-name"> {{product.name}} </div>
+          <div class="alp-single-product-name alp-text-ellipsis"> {{product.name}} </div>
+          <div class="alp-single-product-price"> {{product.price.value}} </div>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
 }
-.alp-filtes-container {
+.alp-filters-container {
     margin-bottom: 1rem;
 }
 .alp-single-product-container {
@@ -13,7 +13,29 @@
     max-height: 500px;
     padding: 1rem;
     width: 255px;
+    min-width: 255px;
 }
 .alp-main-title {
     margin: 1rem 0;
+}
+.alp-sorting-filter {
+    display: inline-block;
+    margin-right: 1rem;
+}
+.alp-single-product-name,
+.alp-single-product-image {
+    margin-bottom: 0.5rem;
+}
+.alp-single-product-price {
+    font-size: 2rem;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+.alp-text-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.clear {
+    clear: both;
 }
