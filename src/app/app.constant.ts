@@ -6,5 +6,18 @@ export const AppConstants = {
     pageSize: 12, // items per page
     category: 1,  // category all = 1
     maxSize: 10,
-    sortOrder: 'relevance'
+    sortOrder: 'relevance',
+    itemsPerPageConstant: [{
+        label: '12 Articles',
+        value: 12
+    }, {
+        label: '24 Articles',
+        value: 24
+    }, {
+        label: '36 Articles',
+        value: 36
+    }, {
+        label: '48 Articles',
+        value: 48
+    }]
 }
