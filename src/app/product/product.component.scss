@@ -8,15 +8,12 @@
 .alp-single-product-container {
     border: 1px solid #ccc;
     border-radius: 4px;
-    height: 400px;
+    height: 300px;
     margin-bottom: 1rem;
     max-height: 500px;
     padding: 1rem;
-    width: 255px;
-    min-width: 255px;
-}
-.alp-main-title {
-    margin: 1rem 0;
+    width: 160px;
+    min-width: 160px;
 }
 .alp-sorting-filter {
     display: inline-block;
@@ -25,6 +22,10 @@
 .alp-single-product-name,
 .alp-single-product-image {
     margin-bottom: 0.5rem;
+}
+.alp-single-product-image {
+    width: 135px;
+    height: 135px;
 }
 .alp-single-product-price {
     font-size: 2rem;
@@ -38,4 +39,11 @@
 }
 .clear {
     clear: both;
+}
+.alp-times-circle {
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    right: 11%;
+    top: 15%;
 }

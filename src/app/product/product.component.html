@@ -5,13 +5,23 @@
   type="ball-scale-multiple">
  <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
-<div class="alp-filters-container text-right">
+<div class="alp-filters-container">
   <div class="row">
-    <div class="col-lg-12">
+    <div class="input-group col-lg-6 col-md-6">
+          <input class="form-control py-2" [(ngModel)]="searchtext" type="search" value="search" id="alp-search-query" placeholder="Search products, e.g. milk, sugar" />
+          <i class="fa fa-times-circle alp-times-circle" [hidden]="!searchtext" title="clear search text" (click)="clearSearchText(searchtext)"></i>
+          <span class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="changeSearchText(searchtext)" type="button">
+              <i class="fa fa-search"></i>
+            </button>
+          </span>
+    </div>
+    <div class="col-lg-6 text-right">
       <div class="alp-sorting-filter">
+
         <div class="btn-group" dropdown>
           <button id="alp-sort-dropdown" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
-                  sortOrderaria-controls="alp-sort-dropdown-basic">
+            sortOrderaria-controls="alp-sort-dropdown-basic">
             {{ sortOrderLabel }} <span class="caret"></span>
           </button>
           <ul id="alp-sort-dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right"
@@ -41,7 +51,7 @@
 <div class="alp-product-list-container">  
   <div class="row products">
     <div *ngFor="let product of products.products">
-      <div class="col-lg-3">
+      <div class="col-lg-2">
         <div class="alp-single-product-container">
           <img class="alp-single-product-image" title="{{product.name}}" src="{{imageEndpoint}}{{product.images[0].url}}" alt="{{product.name}}" />
           <div class="alp-single-product-name alp-text-ellipsis"> {{product.name}} </div>
@@ -51,6 +61,6 @@
     </div>
   </div>
   <div class="alp-pagination">
-    <pagination [totalItems]="totalItems" [itemsPerPage]="pageSize" (pageChanged)="changeCurrentPage($event)" [maxSize]="maxSize"></pagination>
+    <pagination [totalItems]="totalItems" [boundaryLinks]="true" [itemsPerPage]="pageSize" (pageChanged)="changeCurrentPage($event)" [maxSize]="maxSize"></pagination>
   </div>
 </div>

@@ -24,6 +24,7 @@ export class ProductComponent implements OnInit {
   public sortOrderConstant: Array<Object> = AppConstants.sortOrderConstant;
   public sortOrder: string = ''; // sortOrder default to relevance
   public sortOrderLabel: string = '';
+  public searchtext: string = '';
 
   constructor( private _productService: ProductService , private spinner: NgxSpinnerService) { }
 
@@ -79,6 +80,25 @@ export class ProductComponent implements OnInit {
     console.log('item changeSortOrder: ', item );
     this.sortOrder = item.value;
     this.sortOrderLabel = item.label;
+    this.fetchProducts();
+  }
+
+  // event to update query
+  public changeSearchText( searchtext ) {
+    this.spinner.show();
+    console.log('item changeSearchText: ', searchtext );
+    this.query = searchtext;
+    this.currentPage = 0;
+    this.fetchProducts();
+  }
+
+  // event to clear search text
+  public clearSearchText() {
+    this.spinner.show();
+    console.log('item clearSearchText:' );
+    this.searchtext = '';
+    this.query = '';
+    this.currentPage = 0;
     this.fetchProducts();
   }
 
