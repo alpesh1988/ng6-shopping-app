@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WishlistComponent implements OnInit {
   public wishlistData: Array<Object> = [];
+  public showRemovedProductAlert: boolean = false;
 
   constructor() { }
 
@@ -54,6 +55,29 @@ export class WishlistComponent implements OnInit {
         "url": "/medias/sys_master/images/images/h0c/h8a/8863634948126/63033-1-2-1.jpg"
       }]
     }];
+  }
+
+  // takes product and wishlist name from which product needs to removed
+  public removeProductFromWishlist( product, wishlistname ) {
+    // Filter which wishlist product does belong to
+    let item = this.wishlistData.filter((wishlist:any) => wishlist.name === wishlistname );
+    this.removeProduct( item[0], product.code );
+  }
+
+  // Remove  specific product form products array using product' code property
+  public removeProduct( item, productCode ) {
+    let productArray = item.products;
+    for (var i =0; i < productArray.length; i++) {
+      if (productArray[i].code === productCode ) {
+        productArray.splice(i,1);
+        this.showRemovedProductAlert = true;
+        break;
+      }
+    }
+  }
+
+  public onRemovedAlertClosed() {
+    this.showRemovedProductAlert = false;
   }
 
 }
