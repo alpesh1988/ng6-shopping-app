@@ -1,3 +1,4 @@
+<!-- loader icon -->
 <ngx-spinner
   bdColor="rgba(51,51,51,0.8)"
   size="medium"
@@ -7,18 +8,19 @@
 </ngx-spinner>
 <div class="alp-filters-container">
   <div class="row">
+    <!-- input search with button -->
     <div class="input-group col-lg-6 col-md-6">
           <input class="form-control py-2" [(ngModel)]="searchtext" type="search" value="search" id="alp-search-query" placeholder="Search products, e.g. milk, sugar" />
           <i class="fa fa-times-circle alp-times-circle" [hidden]="!searchtext" title="clear search text" (click)="clearSearchText(searchtext)"></i>
           <span class="input-group-append">
-            <button class="btn btn-outline-secondary" (click)="changeSearchText(searchtext)" type="button">
+            <button class="btn btn-outline-secondary" [disabled]="!searchtext" (click)="changeSearchText(searchtext)" type="button">
               <i class="fa fa-search"></i>
             </button>
           </span>
     </div>
     <div class="col-lg-6 text-right">
+      <!-- sortOrder dropdown -->
       <div class="alp-sorting-filter">
-
         <div class="btn-group" dropdown>
           <button id="alp-sort-dropdown" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
             sortOrderaria-controls="alp-sort-dropdown-basic">
@@ -32,6 +34,7 @@
           </ul>
         </div>
       </div>
+      <!-- pageSize dropdown -->
       <div class="btn-group" dropdown>
         <button id="alp-pagesize-dropdown" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
                 aria-controls="alp-pagesize-dropdown-basic">
@@ -48,6 +51,7 @@
   </div>
 </div>
 <div class="clear"></div>
+<!-- Product list container -->
 <div class="alp-product-list-container">  
   <div class="row products">
     <div *ngFor="let product of products.products">
@@ -56,10 +60,12 @@
           <img class="alp-single-product-image" title="{{product.name}}" src="{{imageEndpoint}}{{product.images[0].url}}" alt="{{product.name}}" />
           <div class="alp-single-product-name alp-text-ellipsis"> {{product.name}} </div>
           <div class="alp-single-product-price"> {{product.price.value}} </div>
+          <div class="alp-single-product-wishlist text-center"> Add to Wishlist </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- pagination buttons -->
   <div class="alp-pagination">
     <pagination [totalItems]="totalItems" [boundaryLinks]="true" [itemsPerPage]="pageSize" (pageChanged)="changeCurrentPage($event)" [maxSize]="maxSize"></pagination>
   </div>

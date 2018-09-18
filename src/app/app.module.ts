@@ -7,19 +7,23 @@ import { SharedBootstrapModule } from './shared/shared-bootstrap.module';
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
+import { AppRoutingModule } from './app-routing.module';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent
+    ProductComponent,
+    WishlistComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     NgxSpinnerModule,
-    SharedBootstrapModule
+    SharedBootstrapModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

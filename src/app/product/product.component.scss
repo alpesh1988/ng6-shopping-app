@@ -20,12 +20,21 @@
     margin-right: 1rem;
 }
 .alp-single-product-name,
-.alp-single-product-image {
+.alp-single-product-image,
+.alp-single-product-wishlist {
     margin-bottom: 0.5rem;
 }
 .alp-single-product-image {
     width: 135px;
     height: 135px;
+}
+.alp-single-product-wishlist {
+    background: #1a3b7a;
+    border-radius: 4px;
+    border-top: 1px solid #ddd;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px;
 }
 .alp-single-product-price {
     font-size: 2rem;
