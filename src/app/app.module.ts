@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from  '@angular/common/http';
-import { SharedBootstrapModule } from './shared/shared-bootstrap.module';  
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { SharedBootstrapModule } from './shared/shared-bootstrap.module';
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
@@ -15,6 +16,7 @@ import { ProductComponent } from './product/product.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgxSpinnerModule,
     SharedBootstrapModule
   ],
   providers: [],

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 import { ProductService } from '../core/services/product.service';
 import { environment } from '../../environments/environment';
 import { AppConstants } from '../app.constant';
@@ -22,9 +24,11 @@ export class ProductComponent implements OnInit {
   public sortOrderConstant: Array<Object> = AppConstants.sortOrderConstant;
   public sortOrder: string = ''; // sortOrder default to relevance
   public sortOrderLabel: string = '';
-  constructor( private _productService: ProductService ) { }
+
+  constructor( private _productService: ProductService , private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     console.log('host: ..', this.imageEndpoint );
     // setting pageSize from constant
     this.pageSize = this.itemsPerPageConstant[0]['value'];
@@ -49,11 +53,13 @@ export class ProductComponent implements OnInit {
       this.products = products;
       this.totalItems = products.pagination.totalResults;
       this.pageSize = products.pagination.pageSize;
+      this.spinner.hide();
     });
   }
 
   // event to handle page change in pagination
   public changeCurrentPage(event: any): void {
+    this.spinner.show();
     console.log( 'currentPage clicked: ', event.page )
     this.currentPage = event.page - 1;
     this.fetchProducts();
@@ -61,6 +67,7 @@ export class ProductComponent implements OnInit {
 
   // event to handle change in pageSize
   public changePageSize(item: any) {
+    this.spinner.show();
     console.log('item changePageSize: ', item );
     this.pageSize = item.value;
     this.fetchProducts();
@@ -68,6 +75,7 @@ export class ProductComponent implements OnInit {
 
   // event to handle change in sortOrder
   public changeSortOrder(item: any) {
+    this.spinner.show();
     console.log('item changeSortOrder: ', item );
     this.sortOrder = item.value;
     this.sortOrderLabel = item.label;
