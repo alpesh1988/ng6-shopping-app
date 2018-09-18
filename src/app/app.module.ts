@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { AppRoutingModule } from './app-routing.module';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { PageNotFoundComponent } from './not-found.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    WishlistComponent
+    WishlistComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

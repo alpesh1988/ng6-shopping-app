@@ -1,2 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./app/variables.scss";
+@import "./app/app.component.scss";
+@import "./app/product/product.component.scss";
+@import "./app/wishlist/wishlist.component.scss";
 
+.alp-pagination {
+    display: flex;
+    justify-content: center;
+    li.page-item {
+        &.active a.page-link {
+            color: #fff;
+            background-color: $bg-main-color;
+            border-color: $bg-main-color;
+        }
+
+        a.page-link {
+            color: $bg-main-color;
+        }
+    }
+}

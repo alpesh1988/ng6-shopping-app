@@ -10,7 +10,7 @@
   <div class="row">
     <!-- input search with button -->
     <div class="input-group col-lg-6 col-md-6">
-          <input class="form-control py-2" [(ngModel)]="searchtext" type="search" value="search" id="alp-search-query" placeholder="Search products, e.g. milk, sugar" />
+          <input class="form-control py-2" (keyup.enter) = "changeSearchText(searchtext)" (input)="changeSearchText(searchtext)" [(ngModel)]="searchtext" type="search" value="search" id="alp-search-query" placeholder="Search products, e.g. milk, sugar" />
           <i class="fa fa-times-circle alp-times-circle" [hidden]="!searchtext" title="clear search text" (click)="clearSearchText(searchtext)"></i>
           <span class="input-group-append">
             <button class="btn btn-outline-secondary" [disabled]="!searchtext" (click)="changeSearchText(searchtext)" type="button">
@@ -22,7 +22,7 @@
       <!-- sortOrder dropdown -->
       <div class="alp-sorting-filter">
         <div class="btn-group" dropdown>
-          <button id="alp-sort-dropdown" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+          <button id="alp-sort-dropdown" dropdownToggle type="button" class="btn btn-success dropdown-toggle"
             sortOrderaria-controls="alp-sort-dropdown-basic">
             {{ sortOrderLabel }} <span class="caret"></span>
           </button>
@@ -36,7 +36,7 @@
       </div>
       <!-- pageSize dropdown -->
       <div class="btn-group" dropdown>
-        <button id="alp-pagesize-dropdown" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+        <button id="alp-pagesize-dropdown" dropdownToggle type="button" class="btn btn-success dropdown-toggle"
                 aria-controls="alp-pagesize-dropdown-basic">
           {{ pageSize }} articles <span class="caret"></span>
         </button>

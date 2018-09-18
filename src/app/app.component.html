@@ -1,6 +1,25 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
   <h1 class="alp-main-title text-center">Shopping application </h1>
+  <nav class="navbar navbar-expand-lg alp-navbar">
+    <a class="navbar-brand alp-real-logo" routerLink="/">
+        <img src="assets/real-logo-color.svg" width="30" height="30" alt="">
+      </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a routerLink="/products" routerLinkActive="active" class="nav-link">Products <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/wishlist" class="nav-link" href="#">Wishlist</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <router-outlet></router-outlet>
 </div>
 

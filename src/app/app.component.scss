@@ -1,4 +1,17 @@
+@import "variables.scss";
 
 .alp-main-title {
     margin: 1rem 0;
+}
+.alp-real-logo {
+    background: $white;
+    padding: 7px 14px;
+}
+.alp-navbar {
+    background: $bg-navbar;
+    margin: 1rem 0;
+
+    a {
+        color: $white;
+    }
 }
