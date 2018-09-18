@@ -57,9 +57,9 @@
     <div *ngFor="let product of products.products">
       <div class="col-lg-2">
         <div class="alp-single-product-container">
-          <img class="alp-single-product-image" title="{{product.name}}" src="{{imageEndpoint}}{{product.images[0].url}}" alt="{{product.name}}" />
+          <img class="alp-single-product-image" title="{{product.name}}" src="{{product.images != null && product.images[0] != null && product.images[0].url != null ? imageEndpoint + product.images[0].url : '../assets/no_image_available.png'}}" alt="{{product.name}}" />
           <div class="alp-single-product-name alp-text-ellipsis"> {{product.name}} </div>
-          <div class="alp-single-product-price"> {{product.price.value}} </div>
+          <div class="alp-single-product-price"> {{ product.price.formattedValue.toString().charAt(0)}} {{product.price.value}} </div>
           <div class="alp-single-product-wishlist text-center"> Add to Wishlist </div>
         </div>
       </div>
