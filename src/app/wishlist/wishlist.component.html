@@ -1,26 +1,37 @@
 <div class="alp-wishlist-container">
   <div class="row">
     <div class="col-lg-12">
-      <alert type="danger" *ngIf="showRemovedProductAlert" [dismissOnTimeout]="3000" (onClosed)="onRemovedAlertClosed()">deleted</alert>
-      <div *ngIf="wishlistData">
-        <accordion [closeOthers]="openWishlistOneAtATime">
-          <accordion-group *ngFor="let wishlist of wishlistData" [heading]="wishlist.name">
-            <div class="alp-product-list-container">  
-                <div class="row">
-                  <div *ngFor="let product of wishlist.products">
-                    <div class="col-lg-2">
-                      <div class="alp-single-product-container">
-                        <img class="alp-single-product-image" title="{{product.name}}" src="{{product.images != null && product.images[0] != null && product.images[0].url != null ? imageEndpoint + product.images[0].url : '../assets/no_image_available.png'}}" alt="{{product.name}}" />
-                        <div class="alp-single-product-name alp-text-ellipsis"> {{product.name}} </div>
-                        <div class="alp-single-product-price"> {{ product.currencySymbol}} {{product.price}} </div>
-                        <div class="alp-single-product-wishlist text-center" (click)="removeProductFromWishlist($event, product, wishlist.name); false;" ><i class="fa fa-times-circle"></i> Remove </div>
+      <alert type="danger" *ngIf="showRemovedProductAlert" [dismissOnTimeout]="3000" (onClosed)="onRemovedAlertClosed()">Product has been removed from wishlist...</alert>
+      <div *ngIf="wishlistData" class="alp-all-wishlist-panel">
+        <div class="alp-single-wishlist-panel" *ngFor="let wishlist of wishlistData; index as wishlistIndex">
+          <div class="card">
+            <div class="card-header alp-card-header">
+                <span *ngIf="!showEditableBox[wishlistIndex]">{{wishlist.name}} </span>
+                <input class="form-control alp-wishlist-textbox" *ngIf="showEditableBox[wishlistIndex]" type="text" [(ngModel)]="wishlisteditname[wishlistIndex]" />
+                <a *ngIf="!showEditableBox[wishlistIndex]" (click)="enableEditableBox(wishlist.name, wishlistIndex )"><i class="fa fa-pencil"></i></a>
+                <button *ngIf="showEditableBox[wishlistIndex]" type="button" class="btn btn-success btn-sm" (click)="saveWishlistName(wishlisteditname[wishlistIndex], wishlistIndex)">Save</button>
+                <button *ngIf="showEditableBox[wishlistIndex]" type="button" class="btn btn-link btn-sm" (click)="cancelWishlistName(wishlistIndex)">Cancel</button>
+            </div>
+            <div class="card-body">
+              <div class="card-text">
+                  <div class="alp-product-list-container">
+                      <div class="row">
+                        <div *ngFor="let product of wishlist.products">
+                          <div class="col-lg-2">
+                            <div class="alp-single-product-container">
+                              <img class="alp-single-product-image" title="{{product.name}}" src="{{product.images != null && product.images[0] != null && product.images[0].url != null ? imageEndpoint + product.images[0].url : '../assets/no_image_available.png'}}" alt="{{product.name}}" />
+                              <div class="alp-single-product-name alp-text-ellipsis"> {{product.name}} </div>
+                              <div class="alp-single-product-price"> {{ product.price.formattedValue.toString().charAt(0)}} {{product.price.value}} </div>
+                              <div class="alp-single-product-wishlist text-center" (click)="removeProductFromWishlist($event, product, wishlist.name); false;" ><i class="fa fa-trash"></i> Remove </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
                   </div>
                 </div>
             </div>
-          </accordion-group>
-        </accordion>
+          </div>
+        </div>
       </div>
       <h5 class="text-center" *ngIf="wishlistData === null">Sorry, No wishlist to display here...</h5>
     </div>

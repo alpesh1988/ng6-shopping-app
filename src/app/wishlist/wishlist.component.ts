@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppConstants } from '../app.constant';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-wishlist',
@@ -10,55 +11,20 @@ export class WishlistComponent implements OnInit {
   public wishlistData: Array<Object> = [];
   public showRemovedProductAlert: boolean = false;
   public openWishlistOneAtATime: boolean = AppConstants.openWishlistOneAtATime;
-
+  public imageEndpoint: string = environment.imageEndpoint;
+  public showEditableBox: any = [];
+  public wishlisteditname: any = [];
+  public previousWishlistName: any = [];
   constructor() { }
 
   ngOnInit() {
-    this.wishlistData = [{
-      "name": "wishlist 1",
-      "products": [{
-        "code": "1234_1",
-        "name": "Lipton Ice Tea Zitrone ohne Zucker",
-        "currencySymbol": "€",
-        "price": 17.74,
-        "url": "/medias/sys_master/images/images/h0c/h8a/8863634948126/63033-1-2-1.jpg"
-      }, {
-        "code": "1234_2",
-        "name": "Lipton Ice Tea Zitrone ohne Zucker",
-        "currencySymbol": "€",
-        "price": 27.74,
-        "url": "/medias/sys_master/images/images/h0c/h8a/8863634948126/63033-1-2-1.jpg"
-      }, {
-        "code": "1234_3",
-        "name": "Lipton Ice Tea Zitrone ohne Zucker",
-        "currencySymbol": "€",
-        "price": 37.74,
-        "url": "/medias/sys_master/images/images/h0c/h8a/8863634948126/63033-1-2-1.jpg"
-      }]
-    }, {
-      "name": "wishlist 2",
-      "products": [{
-        "code": "12345_1",
-        "name": "Lipton Ice Tea Zitrone ohne Zucker",
-        "currencySymbol": "€",
-        "price": 2.74,
-        "url": "/medias/sys_master/images/images/h0c/h8a/8863634948126/63033-1-2-1.jpg"
-      }, {
-        "code": "12345_2",
-        "name": "Lipton Ice Tea Zitrone ohne Zucker",
-        "currencySymbol": "€",
-        "price": 3.74,
-        "url": "/medias/sys_master/images/images/h0c/h8a/8863634948126/63033-1-2-1.jpg"
-      }, {
-        "code": "12345_3",
-        "name": "Lipton Ice Tea Zitrone ohne Zucker",
-        "currencySymbol": "€",
-        "price": 4.74,
-        "url": "/medias/sys_master/images/images/h0c/h8a/8863634948126/63033-1-2-1.jpg"
-      }]
-    }];
-    localStorage.setItem( 'wishlists', JSON.stringify(this.wishlistData ));
-
+    console.log(' calling every route');
+    this.wishlistData = JSON.parse(localStorage.getItem('wishlists'));
+    this.wishlistData.forEach((item: any, index)=> {
+      this.showEditableBox[index] = false;
+      this.previousWishlistName[index] = item.name;
+    })
+    console.log('ngOnInit : this.previousWishlistName: ', this.previousWishlistName )
   }
 
   // takes product and wishlist name from which product needs to removed
@@ -89,6 +55,31 @@ export class WishlistComponent implements OnInit {
 
   public onRemovedAlertClosed() {
     this.showRemovedProductAlert = false;
+  }
+
+  enableEditableBox( wishlistname, index ) {
+    console.log('wishlistname: ', wishlistname );
+    console.log('index: ', index );
+    this.showEditableBox[index] = true;
+    this.wishlisteditname[index] = wishlistname;
+  }
+
+  saveWishlistName( wishlistname, index ) {
+    console.log('saveWishlistName wishlistname: ', wishlistname );
+    console.log('index: ', index );
+    this.showEditableBox[index] = false;
+    //this.wishlisteditname[index] = wishlistname;    
+    let item: any = this.wishlistData.find((wishlist:any) => wishlist.name === this.previousWishlistName[index] );
+    console.log( 'item:', item );
+    item.name = wishlistname;
+    localStorage.setItem( 'wishlists', JSON.stringify(this.wishlistData ));
+  }
+
+  cancelWishlistName( index ) {
+    console.log('cancelWishlistName wishlistname: ' );
+    console.log('index: ', index );
+    this.showEditableBox[index] = false;
+    this.wishlisteditname[index] = this.previousWishlistName[index];
   }
 
 }

@@ -60,7 +60,7 @@
           <img class="alp-single-product-image" title="{{product.name}}" src="{{product.images != null && product.images[0] != null && product.images[0].url != null ? imageEndpoint + product.images[0].url : '../assets/no_image_available.png'}}" alt="{{product.name}}" />
           <div class="alp-single-product-name alp-text-ellipsis"> {{product.name}} </div>
           <div class="alp-single-product-price"> {{ product.price.formattedValue.toString().charAt(0)}} {{product.price.value}} </div>
-          <div class="alp-single-product-wishlist text-center"><i class="fa fa-heart"></i> Add to Wishlist </div>
+          <div class="alp-single-product-wishlist text-center" (click)="openWishlistModal(template, product)"><i class="fa fa-heart"></i> Add to Wishlist </div>
         </div>
       </div>
     </div>
@@ -70,3 +70,51 @@
     <pagination [totalItems]="totalItems" [boundaryLinks]="true" [itemsPerPage]="pageSize" (pageChanged)="changeCurrentPage($event)" [maxSize]="maxSize"></pagination>
   </div>
 </div>
+
+<!-- Modal to add products in wishlist -->
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Wishlist</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="wishlistData">
+      <div class="row">        
+        <div class="col-lg-12">          
+          <div>
+            <img class="alp-product-image" width="100" height="100" title="{{productToBeAddedToWishlist.name}}" src="{{productToBeAddedToWishlist.images != null && productToBeAddedToWishlist.images[0] != null && productToBeAddedToWishlist.images[0].url != null ? imageEndpoint + productToBeAddedToWishlist.images[0].url : '../assets/no_image_available.png'}}" alt="{{productToBeAddedToWishlist.name}}" />
+            <p>{{productToBeAddedToWishlist.name}}</p>
+          </div>
+          <div class="clear"></div>
+          <h6>Add product to anyone of below wishlists</h6>
+          <div class="alp-wishlist-name-container clear" *ngFor="let wishlist of wishlistData">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" [name]="wishlist.name" [id]="wishlist.name" [(ngModel)]="selectedWishlist" [value]="wishlist.name">
+              <label class="form-check-label" [attr.for]="wishlist.name">{{wishlist.name}}</label>
+            </div>            
+          </div>
+          <button [disabled]="!selectedWishlist" type="button" class="btn btn-success btn-sm alp-mt-1" (click)="addToWishlist(selectedWishlist)">Add to wishlist</button>
+          <alert class="alp-added-alert" type="info" *ngIf="showAddedProductAlert" [dismissOnTimeout]="2000" (onClosed)="onAddedAlertClosed()"><i class="fa fa-check"></i> Product added to wishlist</alert>
+        </div>
+      </div>
+    </div>  
+    <div>
+      <div class="row">        
+        <div class="col-lg-12">
+          <div>
+            <h6 class="alp-create-wishlist-text">Create a wishlist</h6>
+            <div class="btn-group" role="group" aria-label="Basic example">                
+              <input type="text" class="form-control" [(ngModel)]="newwishlist" placeholder="Type name of wishlist" />
+              <button type="button" class="btn btn-default btn-sm" [disabled]="!newwishlist" (click)="createWishlist(newwishlist)">Create</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-link" (click)="modalRef.hide()">Ok</button>
+  </div>
+</ng-template>

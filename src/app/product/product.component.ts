@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { ProductService } from '../core/services/product.service';
 import { environment } from '../../environments/environment';
@@ -25,8 +27,13 @@ export class ProductComponent implements OnInit {
   public sortOrder: string = ''; // sortOrder default to relevance
   public sortOrderLabel: string = '';
   public searchtext: string = '';
+  public modalRef: BsModalRef;
+  public wishlistData: Array<Object> = []; 
+  public productToBeAddedToWishlist: any = {};
+  public newwishlist: string = '';
+  public showAddedProductAlert: boolean = false;
 
-  constructor( private _productService: ProductService , private spinner: NgxSpinnerService) { }
+  constructor( private _productService: ProductService , private spinner: NgxSpinnerService, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.spinner.show();
@@ -36,6 +43,8 @@ export class ProductComponent implements OnInit {
     this.sortOrder = this.sortOrderConstant[0]['value'];
     this.sortOrderLabel = this.sortOrderConstant[0]['label'];
     this.fetchProducts();
+    // setting wishlist data
+    this.wishlistData = JSON.parse(localStorage.getItem('wishlists')) || [];
   }
 
   // api to fetch products data
@@ -100,6 +109,37 @@ export class ProductComponent implements OnInit {
     this.query = '';
     this.currentPage = 0;
     this.fetchProducts();
+  }
+
+  openWishlistModal(template: TemplateRef<any>, productToBeAddedToWishlist ) {
+    this.modalRef = this.modalService.show(template,
+      Object.assign({}, { class: 'gray modal-lg' }));
+    this.productToBeAddedToWishlist = productToBeAddedToWishlist;
+  }
+
+  addToWishlist( selectedWishlist ) {
+    console.log('sselectedWishlist: ', selectedWishlist)
+    console.log('productToBeAddedToWishlist:', this.productToBeAddedToWishlist );
+    let item: any = this.wishlistData.find((wishlist:any) => wishlist.name === selectedWishlist );
+    item.products.push(this.productToBeAddedToWishlist);
+    console.log('final wishlist: ', item );
+    localStorage.setItem( 'wishlists', JSON.stringify(this.wishlistData ));    
+    this.showAddedProductAlert = true;
+  }
+
+  createWishlist( newWishlistName ) {
+    let newWishListFormat = {
+      name: newWishlistName,
+      products: []
+    };
+    this.wishlistData.push(newWishListFormat);
+    localStorage.setItem( 'wishlists', JSON.stringify(this.wishlistData ));
+    this.newwishlist = '';
+  }
+  
+  onAddedAlertClosed() {
+    this.showAddedProductAlert = false;
+    this.modalRef.hide();
   }
 
 }
