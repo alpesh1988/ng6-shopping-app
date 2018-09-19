@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConstants } from '../app.constant';
 
 @Component({
   selector: 'app-wishlist',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class WishlistComponent implements OnInit {
   public wishlistData: Array<Object> = [];
   public showRemovedProductAlert: boolean = false;
+  public openWishlistOneAtATime: boolean = AppConstants.openWishlistOneAtATime;
 
   constructor() { }
 
@@ -55,17 +57,23 @@ export class WishlistComponent implements OnInit {
         "url": "/medias/sys_master/images/images/h0c/h8a/8863634948126/63033-1-2-1.jpg"
       }]
     }];
+    localStorage.setItem( 'wishlists', JSON.stringify(this.wishlistData ));
+
   }
 
   // takes product and wishlist name from which product needs to removed
-  public removeProductFromWishlist( product, wishlistname ) {
+  public removeProductFromWishlist( event, product, wishlistname ) {
+    event.preventDefault()
+    event.stopPropagation();
     // Filter which wishlist product does belong to
-    let item = this.wishlistData.filter((wishlist:any) => wishlist.name === wishlistname );
-    this.removeProduct( item[0], product.code );
+    let wishlistData = JSON.parse(localStorage.getItem('wishlists'));
+
+    let item = wishlistData.filter((wishlist:any) => wishlist.name === wishlistname );
+    this.removeProduct( item[0], product.code, wishlistData );
   }
 
   // Remove  specific product form products array using product' code property
-  public removeProduct( item, productCode ) {
+  public removeProduct( item, productCode, wishlistData ) {
     let productArray = item.products;
     for (var i =0; i < productArray.length; i++) {
       if (productArray[i].code === productCode ) {
@@ -74,6 +82,9 @@ export class WishlistComponent implements OnInit {
         break;
       }
     }
+    console.log('after removal wishlistData: ', wishlistData);
+    localStorage.setItem( 'wishlists', JSON.stringify(wishlistData ));
+    this.wishlistData = wishlistData;
   }
 
   public onRemovedAlertClosed() {

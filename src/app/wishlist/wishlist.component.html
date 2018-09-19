@@ -3,7 +3,7 @@
     <div class="col-lg-12">
       <alert type="danger" *ngIf="showRemovedProductAlert" [dismissOnTimeout]="3000" (onClosed)="onRemovedAlertClosed()">deleted</alert>
       <div *ngIf="wishlistData">
-        <accordion>
+        <accordion [closeOthers]="openWishlistOneAtATime">
           <accordion-group *ngFor="let wishlist of wishlistData" [heading]="wishlist.name">
             <div class="alp-product-list-container">  
                 <div class="row">
@@ -13,7 +13,7 @@
                         <img class="alp-single-product-image" title="{{product.name}}" src="{{product.images != null && product.images[0] != null && product.images[0].url != null ? imageEndpoint + product.images[0].url : '../assets/no_image_available.png'}}" alt="{{product.name}}" />
                         <div class="alp-single-product-name alp-text-ellipsis"> {{product.name}} </div>
                         <div class="alp-single-product-price"> {{ product.currencySymbol}} {{product.price}} </div>
-                        <div class="alp-single-product-wishlist text-center" (click)="removeProductFromWishlist(product, wishlist.name)"><i class="fa fa-times-circle"></i> Remove </div>
+                        <div class="alp-single-product-wishlist text-center" (click)="removeProductFromWishlist($event, product, wishlist.name); false;" ><i class="fa fa-times-circle"></i> Remove </div>
                       </div>
                     </div>
                   </div>

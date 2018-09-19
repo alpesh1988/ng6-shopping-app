@@ -35,5 +35,6 @@ export const AppConstants = {
     }, {
         label: 'Name (Descending)',
         value: 'name-desc'
-    }]
+    }],
+    openWishlistOneAtATime: true
 }
