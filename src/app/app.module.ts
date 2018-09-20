@@ -10,6 +10,7 @@ import { ProductComponent } from './product/product.component';
 import { AppRoutingModule } from './app-routing.module';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { PageNotFoundComponent } from './not-found.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PageNotFoundComponent } from './not-found.component';
     AppComponent,
     ProductComponent,
     WishlistComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
