@@ -111,12 +111,14 @@ export class ProductComponent implements OnInit {
     this.fetchProducts();
   }
 
+  // when 'add to wishlist' button from single product is clicked
   openWishlistModal(template: TemplateRef<any>, productToBeAddedToWishlist ) {
     this.modalRef = this.modalService.show(template,
       Object.assign({}, { class: 'gray modal-lg' }));
     this.productToBeAddedToWishlist = productToBeAddedToWishlist;
   }
 
+  // when product is added to wishlist by clicking 'add to wishlist' button
   addToWishlist( selectedWishlist ) {
     console.log('sselectedWishlist: ', selectedWishlist);
     console.log('productToBeAddedToWishlist:', this.productToBeAddedToWishlist );
@@ -127,6 +129,7 @@ export class ProductComponent implements OnInit {
     this.showAddedProductAlert = true;
   }
 
+  // create a wishlist using input box
   createWishlist( newWishlistName ) {
     const newWishListFormat = {
       name: newWishlistName,
@@ -137,11 +140,13 @@ export class ProductComponent implements OnInit {
     this.newwishlist = '';
   }
 
+  // when 'add to wishlist' modal is closed
   onAddedAlertClosed() {
     this.showAddedProductAlert = false;
     this.modalRef.hide();
   }
 
+  // create product image dynamically
   getSrcFromProduct(product) {
     if (product.images != null && product.images[0] != null && product.images[0].url != null ) {
       return this.imageEndpoint + product.images[0].url;
