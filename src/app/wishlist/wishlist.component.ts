@@ -19,8 +19,8 @@ export class WishlistComponent implements OnInit {
 
   ngOnInit() {
     console.log(' calling every route');
-    this.wishlistData = JSON.parse(localStorage.getItem('wishlists'));
-    this.wishlistData.forEach((item: any, index)=> {
+    this.wishlistData = JSON.parse(localStorage.getItem('wishlists')) || [];
+    this.wishlistData.length > 0 && this.wishlistData.forEach((item: any, index)=> {
       this.showEditableBox[index] = false;
       this.previousWishlistName[index] = item.name;
     })

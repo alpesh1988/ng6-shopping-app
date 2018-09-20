@@ -33,7 +33,7 @@ export class ProductComponent implements OnInit {
   public newwishlist: string = '';
   public showAddedProductAlert: boolean = false;
 
-  constructor( private _productService: ProductService , private spinner: NgxSpinnerService, private modalService: BsModalService) { }
+  constructor( private _productService: ProductService, private spinner: NgxSpinnerService, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.spinner.show();

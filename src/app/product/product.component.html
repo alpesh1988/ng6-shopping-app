@@ -88,14 +88,15 @@
             <p>{{productToBeAddedToWishlist.name}}</p>
           </div>
           <div class="clear"></div>
-          <h6>Add product to anyone of below wishlists</h6>
+          <h6 [hidden]="wishlistData.length === 0">Add product to anyone of below wishlists</h6>
           <div class="alp-wishlist-name-container clear" *ngFor="let wishlist of wishlistData">
             <div class="form-check">
               <input class="form-check-input" type="radio" [name]="wishlist.name" [id]="wishlist.name" [(ngModel)]="selectedWishlist" [value]="wishlist.name">
               <label class="form-check-label" [attr.for]="wishlist.name">{{wishlist.name}}</label>
             </div>            
           </div>
-          <button [disabled]="!selectedWishlist" type="button" class="btn btn-success btn-sm alp-mt-1" (click)="addToWishlist(selectedWishlist)">Add to wishlist</button>
+          <button [hidden]="wishlistData.length === 0" [disabled]="!selectedWishlist" type="button" class="btn btn-success btn-sm alp-mt-1" (click)="addToWishlist(selectedWishlist)">Add to wishlist</button>
+          <p [hidden]="wishlistData.length > 0">Sorry, No wishlist. Please create it below.</p>
           <alert class="alp-added-alert" type="info" *ngIf="showAddedProductAlert" [dismissOnTimeout]="2000" (onClosed)="onAddedAlertClosed()"><i class="fa fa-check"></i> Product added to wishlist</alert>
         </div>
       </div>
@@ -106,7 +107,7 @@
           <div>
             <h6 class="alp-create-wishlist-text">Create a wishlist</h6>
             <div class="btn-group" role="group" aria-label="Basic example">                
-              <input type="text" class="form-control" [(ngModel)]="newwishlist" placeholder="Type name of wishlist" />
+              <input type="text" class="form-control" [(ngModel)]="newwishlist" placeholder="Type name of wishlist..." />
               <button type="button" class="btn btn-default btn-sm" [disabled]="!newwishlist" (click)="createWishlist(newwishlist)">Create</button>
             </div>
           </div>
