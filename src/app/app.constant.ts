@@ -36,5 +36,29 @@ export const AppConstants = {
         label: 'Name (Descending)',
         value: 'name-desc'
     }],
-    openWishlistOneAtATime: true
+    socialIconConstant: [{
+        name: 'Facebook',
+        iconClass: 'fa fa-facebook-square fa-2x',
+        // iconColor: '#3b5998',
+        iconColor: 'white',
+        link: 'https://www.real.de'
+    }, {
+        name: 'Instagram',
+        iconClass: 'fa fa-instagram fa-2x',
+        // iconColor: '#262626',
+        iconColor: 'white',
+        link: 'https://www.real.de'
+    }, {
+        name: 'Twitter',
+        iconClass: 'fa fa-twitter-square fa-2x',
+        // iconColor: '#1da1f2',
+        iconColor: 'white',
+        link: 'https://www.real.de'
+    }, {
+        name: 'Youtube',
+        iconClass: 'fa fa-youtube-square fa-2x',
+        // iconColor: '#ff0000',
+        iconColor: 'white',
+        link: 'https://www.real.de'
+    }]
 }

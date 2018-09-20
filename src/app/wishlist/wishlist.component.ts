@@ -10,7 +10,6 @@ import { environment } from '../../environments/environment';
 export class WishlistComponent implements OnInit {
   public wishlistData: Array<Object> = [];
   public showRemovedProductAlert: boolean = false;
-  public openWishlistOneAtATime: boolean = AppConstants.openWishlistOneAtATime;
   public imageEndpoint: string = environment.imageEndpoint;
   public showEditableBox: any = [];
   public wishlisteditname: any = [];

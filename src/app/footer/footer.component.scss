@@ -1,0 +1,14 @@
+@import "../variables.scss";
+
+.alp-footer {
+    background: $success;
+
+    ul {
+        list-style: none;
+        margin-bottom: 0;
+    }
+    .alp-footer-text {
+        color: $white;
+        padding: 0.5rem 1rem 0;;
+    }
+}
