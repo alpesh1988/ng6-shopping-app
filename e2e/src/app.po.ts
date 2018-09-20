@@ -9,7 +9,7 @@ export class AppPage {
     return browser.driver.manage().window().maximize();
   }
 
-  waitForAngular(){
+  waitForAngular() {
     return browser.waitForAngularEnabled();
   }
 

@@ -1,7 +1,8 @@
 import { AppPage } from './app.po';
 
 describe('workspace-project App', () => {
-  let page: AppPage,
+  let page: AppPage;
+  const
     mediumSleepTime = 5000,
     smallSleepTime = 3000;
 
@@ -18,8 +19,8 @@ describe('workspace-project App', () => {
   });
 
   it('should type "sugar" in searchbox', () => {
-    let searchbox = page.getSearchbox();
+    const searchbox = page.getSearchbox();
     searchbox.sendKeys('sugar');
     page.sleep(smallSleepTime);
-  })
+  });
 });

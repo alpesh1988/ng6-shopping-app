@@ -59,7 +59,7 @@ export class WishlistComponent implements OnInit {
     this.showRemovedProductAlert = false;
   }
 
-  //when user clicks on pencil icon 
+  // when user clicks on pencil icon
   enableEditableBox( wishlistname, index ) {
     console.log('wishlistname: ', wishlistname );
     console.log('index: ', index );
@@ -67,7 +67,7 @@ export class WishlistComponent implements OnInit {
     this.wishlisteditname[index] = wishlistname;
   }
 
-  // when user saves edited wishlist name 
+  // when user saves edited wishlist name
   saveWishlistName( wishlistname, index ) {
     console.log('saveWishlistName wishlistname: ', wishlistname );
     console.log('index: ', index );
@@ -80,7 +80,7 @@ export class WishlistComponent implements OnInit {
     localStorage.setItem( 'wishlists', JSON.stringify(this.wishlistData ));
   }
 
-  // when user cancels edited wishlist name 
+  // when user cancels edited wishlist name
   cancelWishlistName( index ) {
     console.log('cancelWishlistName wishlistname: ' );
     console.log('index: ', index );
