@@ -61,4 +61,4 @@ export const AppConstants = {
         iconColor: 'white',
         link: 'https://www.real.de'
     }]
-}
+};

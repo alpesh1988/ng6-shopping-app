@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent },
   { path: '',   redirectTo: '/products', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
-]
+];
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

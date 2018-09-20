@@ -19,19 +19,19 @@ export class ProductComponent implements OnInit {
   public itemsPerPageConstant: Array<Object> = AppConstants.itemsPerPageConstant;
   public query: string = AppConstants.query;
   public totalItems: number = AppConstants.totalItems; // total items
-  public pageSize: number = 0 ; // items per page.
+  public pageSize = 0 ; // items per page.
   public currentPage: number = AppConstants.currentPage; // current page number
   public category: number = AppConstants.category; // category all = 1
   public maxSize: number = AppConstants.maxSize; // pagination max count
   public sortOrderConstant: Array<Object> = AppConstants.sortOrderConstant;
-  public sortOrder: string = ''; // sortOrder default to relevance
-  public sortOrderLabel: string = '';
-  public searchtext: string = '';
+  public sortOrder = ''; // sortOrder default to relevance
+  public sortOrderLabel = '';
+  public searchtext = '';
   public modalRef: BsModalRef;
-  public wishlistData: Array<Object> = []; 
+  public wishlistData: Array<Object> = [];
   public productToBeAddedToWishlist: any = {};
-  public newwishlist: string = '';
-  public showAddedProductAlert: boolean = false;
+  public newwishlist = '';
+  public showAddedProductAlert = false;
 
   constructor( private _productService: ProductService, private spinner: NgxSpinnerService, private modalService: BsModalService) { }
 
@@ -70,7 +70,7 @@ export class ProductComponent implements OnInit {
   // event to handle page change in pagination
   public changeCurrentPage(event: any): void {
     this.spinner.show();
-    console.log( 'currentPage clicked: ', event.page )
+    console.log( 'currentPage clicked: ', event.page );
     this.currentPage = event.page - 1;
     this.fetchProducts();
   }
@@ -118,17 +118,17 @@ export class ProductComponent implements OnInit {
   }
 
   addToWishlist( selectedWishlist ) {
-    console.log('sselectedWishlist: ', selectedWishlist)
+    console.log('sselectedWishlist: ', selectedWishlist);
     console.log('productToBeAddedToWishlist:', this.productToBeAddedToWishlist );
-    let item: any = this.wishlistData.find((wishlist:any) => wishlist.name === selectedWishlist );
+    const item: any = this.wishlistData.find((wishlist: any) => wishlist.name === selectedWishlist );
     item.products.push(this.productToBeAddedToWishlist);
     console.log('final wishlist: ', item );
-    localStorage.setItem( 'wishlists', JSON.stringify(this.wishlistData ));    
+    localStorage.setItem( 'wishlists', JSON.stringify(this.wishlistData ));
     this.showAddedProductAlert = true;
   }
 
   createWishlist( newWishlistName ) {
-    let newWishListFormat = {
+    const newWishListFormat = {
       name: newWishlistName,
       products: []
     };
@@ -136,7 +136,7 @@ export class ProductComponent implements OnInit {
     localStorage.setItem( 'wishlists', JSON.stringify(this.wishlistData ));
     this.newwishlist = '';
   }
-  
+
   onAddedAlertClosed() {
     this.showAddedProductAlert = false;
     this.modalRef.hide();

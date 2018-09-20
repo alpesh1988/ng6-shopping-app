@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class WishlistComponent implements OnInit {
   public wishlistData: Array<Object> = [];
-  public showRemovedProductAlert: boolean = false;
+  public showRemovedProductAlert = false;
   public imageEndpoint: string = environment.imageEndpoint;
   public showEditableBox: any = [];
   public wishlisteditname: any = [];
@@ -19,30 +19,32 @@ export class WishlistComponent implements OnInit {
   ngOnInit() {
     console.log(' calling every route');
     this.wishlistData = JSON.parse(localStorage.getItem('wishlists')) || [];
-    this.wishlistData.length > 0 && this.wishlistData.forEach((item: any, index)=> {
-      this.showEditableBox[index] = false;
-      this.previousWishlistName[index] = item.name;
-    })
-    console.log('ngOnInit : this.previousWishlistName: ', this.previousWishlistName )
+    if ( this.wishlistData.length > 0 ) {
+      this.wishlistData.forEach((item: any, index) => {
+        this.showEditableBox[index] = false;
+        this.previousWishlistName[index] = item.name;
+      });
+    }
+    console.log('ngOnInit : this.previousWishlistName: ', this.previousWishlistName );
   }
 
   // takes product and wishlist name from which product needs to removed
   public removeProductFromWishlist( event, product, wishlistname ) {
-    event.preventDefault()
+    event.preventDefault();
     event.stopPropagation();
     // Filter which wishlist product does belong to
-    let wishlistData = JSON.parse(localStorage.getItem('wishlists'));
+    const wishlistData = JSON.parse(localStorage.getItem('wishlists'));
 
-    let item = wishlistData.filter((wishlist:any) => wishlist.name === wishlistname );
+    const item = wishlistData.filter((wishlist: any) => wishlist.name === wishlistname );
     this.removeProduct( item[0], product.code, wishlistData );
   }
 
   // Remove  specific product form products array using product' code property
   public removeProduct( item, productCode, wishlistData ) {
-    let productArray = item.products;
-    for (var i =0; i < productArray.length; i++) {
+    const productArray = item.products;
+    for (let i = 0; i < productArray.length; i++) {
       if (productArray[i].code === productCode ) {
-        productArray.splice(i,1);
+        productArray.splice(i, 1);
         this.showRemovedProductAlert = true;
         break;
       }
@@ -67,8 +69,8 @@ export class WishlistComponent implements OnInit {
     console.log('saveWishlistName wishlistname: ', wishlistname );
     console.log('index: ', index );
     this.showEditableBox[index] = false;
-    //this.wishlisteditname[index] = wishlistname;    
-    let item: any = this.wishlistData.find((wishlist:any) => wishlist.name === this.previousWishlistName[index] );
+    // this.wishlisteditname[index] = wishlistname;
+    const item: any = this.wishlistData.find((wishlist: any) => wishlist.name === this.previousWishlistName[index] );
     console.log( 'item:', item );
     item.name = wishlistname;
     localStorage.setItem( 'wishlists', JSON.stringify(this.wishlistData ));
