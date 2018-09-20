@@ -6,12 +6,13 @@
         <div class="alp-single-wishlist-panel" *ngFor="let wishlist of wishlistData; index as wishlistIndex">
           <div class="card">
             <div class="card-header alp-card-header">
-                <a style="cursor:pointer;" (dblclick)="enableEditableBox(wishlist.name, wishlistIndex )" *ngIf="!showEditableBox[wishlistIndex]">{{wishlist.name}} </a>
+                <a style="cursor:pointer;" *ngIf="!showEditableBox[wishlistIndex]">{{wishlist.name}} </a>
                 <input class="form-control alp-wishlist-textbox" *ngIf="showEditableBox[wishlistIndex]" type="text" [(ngModel)]="wishlisteditname[wishlistIndex]" />
-                <!-- <a *ngIf="!showEditableBox[wishlistIndex]" (click)="enableEditableBox(wishlist.name, wishlistIndex )"><i class="fa fa-pencil"></i></a> -->
+                <a class="alp-edit-wishlist-icon pull-right" *ngIf="!showEditableBox[wishlistIndex]" (click)="enableEditableBox(wishlist.name, wishlistIndex )"><i class="fa fa-pencil"></i></a>
                 <button *ngIf="showEditableBox[wishlistIndex]" type="button" class="btn btn-success btn-sm" (click)="saveWishlistName(wishlisteditname[wishlistIndex], wishlistIndex)">Save</button>
                 <button *ngIf="showEditableBox[wishlistIndex]" type="button" class="btn btn-link btn-sm" (click)="cancelWishlistName(wishlistIndex)">Cancel</button>
             </div>
+            <div class="clear"></div>
             <div class="card-body">
               <div class="card-text">
                   <div class="alp-product-list-container">
@@ -26,6 +27,7 @@
                             </div>
                           </div>
                         </div>
+                        <div *ngIf="wishlist.products.length === 0" class="col-lg-12 text-center">No products added yet...</div>
                       </div>
                   </div>
                 </div>

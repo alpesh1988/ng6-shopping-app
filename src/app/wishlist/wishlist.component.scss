@@ -2,7 +2,11 @@
     text-transform: capitalize;
 }
 .alp-all-wishlist-panel {
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
+    
+    .alp-product-list-container {
+        margin-bottom: 0;
+    }
 }
 .alp-wishlist-textbox {
     display: inline-block;
@@ -11,4 +15,7 @@
 }
 .btn + .btn {
     margin-left: 0.25rem;
+}
+.alp-edit-wishlist-icon {
+    cursor: pointer;
 }
