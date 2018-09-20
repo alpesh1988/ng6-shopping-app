@@ -73,6 +73,7 @@ export class WishlistComponent implements OnInit {
     const item: any = this.wishlistData.find((wishlist: any) => wishlist.name === this.previousWishlistName[index] );
     console.log( 'item:', item );
     item.name = wishlistname;
+    this.previousWishlistName[index] = wishlistname;
     localStorage.setItem( 'wishlists', JSON.stringify(this.wishlistData ));
   }
 
@@ -81,6 +82,13 @@ export class WishlistComponent implements OnInit {
     console.log('index: ', index );
     this.showEditableBox[index] = false;
     this.wishlisteditname[index] = this.previousWishlistName[index];
+  }
+
+  getSrcFromProduct(product) {
+    if (product.images != null && product.images[0] != null && product.images[0].url != null ) {
+      return this.imageEndpoint + product.images[0].url;
+    }
+    return null;
   }
 
 }

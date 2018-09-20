@@ -64,6 +64,7 @@
 .alp-product-image {
     float: left;
     margin-bottom: 1rem;
+    margin-right: 1rem;
 }
 .alp-wishlist-name-container {
     margin-top: 1rem;
@@ -80,4 +81,8 @@
 .alp-product-list-container {
     margin-bottom: 4rem;
     overflow: hidden;
+}
+#alp-create-wishlist-input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }

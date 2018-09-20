@@ -142,4 +142,11 @@ export class ProductComponent implements OnInit {
     this.modalRef.hide();
   }
 
+  getSrcFromProduct(product) {
+    if (product.images != null && product.images[0] != null && product.images[0].url != null ) {
+      return this.imageEndpoint + product.images[0].url;
+    }
+    return null;
+  }
+
 }

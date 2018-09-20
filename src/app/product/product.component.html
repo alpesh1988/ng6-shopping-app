@@ -57,8 +57,8 @@
     <div *ngFor="let product of products.products">
       <div class="col-lg-2">
         <div class="alp-single-product-container">
-          <img class="alp-single-product-image" title="{{product.name}}" src="{{product.images != null && product.images[0] != null && product.images[0].url != null ? imageEndpoint + product.images[0].url : '../assets/no_image_available.png'}}" alt="{{product.name}}" />
-          <div class="alp-single-product-name alp-text-ellipsis"> {{product.name}} </div>
+          <img class="alp-single-product-image" title="{{product.name}}" [src]="getSrcFromProduct(product) || '../assets/no_image_available.png'"  alt="{{product.name}}" />
+          <div class="alp-single-product-name alp-text-ellipsis" title={{product.name}}> {{product.name}} </div>
           <div class="alp-single-product-price"> {{ product.price.formattedValue.toString().charAt(0)}} {{product.price.value}} </div>
           <div class="alp-single-product-wishlist text-center" (click)="openWishlistModal(template, product)"><i class="fa fa-heart"></i> Add to Wishlist </div>
         </div>
@@ -96,7 +96,7 @@
             </div>            
           </div>
           <button id="alp-add-to-wishlist-btn" [hidden]="wishlistData.length === 0" [disabled]="!selectedWishlist" type="button" class="btn btn-success btn-sm alp-mt-1" (click)="addToWishlist(selectedWishlist)">Add to wishlist</button>
-          <p [hidden]="wishlistData.length > 0">Sorry, No wishlist. Please create it below.</p>
+          <p [hidden]="wishlistData.length > 0">No wishlist avilable. Please create it below.</p>
           <alert class="alp-added-alert" type="info" *ngIf="showAddedProductAlert" [dismissOnTimeout]="2000" (onClosed)="onAddedAlertClosed()"><i class="fa fa-check"></i> Product added to wishlist</alert>
         </div>
       </div>
@@ -114,8 +114,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-link" (click)="modalRef.hide()">Ok</button>
   </div>
 </ng-template>
