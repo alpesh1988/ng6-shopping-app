@@ -15,23 +15,23 @@ import { AppConstants } from '../app.constant';
 export class ProductComponent implements OnInit {
 
   private products: any = {};
-  public imageEndpoint: string = environment.imageEndpoint;
-  public itemsPerPageConstant: Array<Object> = AppConstants.itemsPerPageConstant;
-  public query: string = AppConstants.query;
-  public totalItems: number = AppConstants.totalItems; // total items
-  public pageSize = 0 ; // items per page.
-  public currentPage: number = AppConstants.currentPage; // current page number
-  public category: number = AppConstants.category; // category all = 1
-  public maxSize: number = AppConstants.maxSize; // pagination max count
-  public sortOrderConstant: Array<Object> = AppConstants.sortOrderConstant;
-  public sortOrder = ''; // sortOrder default to relevance
-  public sortOrderLabel = '';
-  public searchtext = '';
-  public modalRef: BsModalRef;
-  public wishlistData: Array<Object> = [];
-  public productToBeAddedToWishlist: any = {};
-  public newwishlist = '';
-  public showAddedProductAlert = false;
+   imageEndpoint: string = environment.imageEndpoint;
+   itemsPerPageConstant: Array<Object> = AppConstants.itemsPerPageConstant;
+   query: string = AppConstants.query;
+   totalItems: number = AppConstants.totalItems; // total items
+   pageSize = 0 ; // items per page.
+   currentPage: number = AppConstants.currentPage; // current page number
+   category: number = AppConstants.category; // category all = 1
+   maxSize: number = AppConstants.maxSize; // pagination max count
+   sortOrderConstant: Array<Object> = AppConstants.sortOrderConstant;
+   sortOrder = ''; // sortOrder default to relevance
+   sortOrderLabel = '';
+   searchtext = '';
+   modalRef: BsModalRef;
+   wishlistData: Array<Object> = [];
+   productToBeAddedToWishlist: any = {};
+   newwishlist = '';
+   showAddedProductAlert = false;
 
   constructor( private _productService: ProductService, private spinner: NgxSpinnerService, private modalService: BsModalService) { }
 
@@ -48,7 +48,7 @@ export class ProductComponent implements OnInit {
   }
 
   // api to fetch products data
-  public fetchProducts() {
+   fetchProducts() {
     let url = '';
     url = AppConstants.fetchAPI;
     url = url.replace( '[:query]', this.query );
@@ -68,7 +68,7 @@ export class ProductComponent implements OnInit {
   }
 
   // event to handle page change in pagination
-  public changeCurrentPage(event: any): void {
+   changeCurrentPage(event: any): void {
     this.spinner.show();
     console.log( 'currentPage clicked: ', event.page );
     this.currentPage = event.page - 1;
@@ -76,7 +76,7 @@ export class ProductComponent implements OnInit {
   }
 
   // event to handle change in pageSize
-  public changePageSize(item: any) {
+   changePageSize(item: any) {
     this.spinner.show();
     console.log('item changePageSize: ', item );
     this.pageSize = item.value;
@@ -84,7 +84,7 @@ export class ProductComponent implements OnInit {
   }
 
   // event to handle change in sortOrder
-  public changeSortOrder(item: any) {
+   changeSortOrder(item: any) {
     this.spinner.show();
     console.log('item changeSortOrder: ', item );
     this.sortOrder = item.value;
@@ -93,7 +93,7 @@ export class ProductComponent implements OnInit {
   }
 
   // event to update query
-  public changeSearchText( searchtext ) {
+   changeSearchText( searchtext ) {
     this.spinner.show();
     console.log('item changeSearchText: ', searchtext );
     this.query = searchtext;
@@ -102,7 +102,7 @@ export class ProductComponent implements OnInit {
   }
 
   // event to clear search text
-  public clearSearchText() {
+   clearSearchText() {
     this.spinner.show();
     console.log('item clearSearchText:' );
     this.searchtext = '';

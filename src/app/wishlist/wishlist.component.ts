@@ -8,12 +8,12 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./wishlist.component.scss']
 })
 export class WishlistComponent implements OnInit {
-  public wishlistData: Array<Object> = [];
-  public showRemovedProductAlert = false;
-  public imageEndpoint: string = environment.imageEndpoint;
-  public showEditableBox: any = [];
-  public wishlisteditname: any = [];
-  public previousWishlistName: any = [];
+   wishlistData: Array<Object> = [];
+   showRemovedProductAlert = false;
+   imageEndpoint: string = environment.imageEndpoint;
+   showEditableBox: any = [];
+   wishlisteditname: any = [];
+   previousWishlistName: any = [];
   constructor() { }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class WishlistComponent implements OnInit {
   }
 
   // takes product and wishlist name from which product needs to removed
-  public removeProductFromWishlist( event, product, wishlistname ) {
+   removeProductFromWishlist( event, product, wishlistname ) {
     event.preventDefault();
     event.stopPropagation();
     // Filter which wishlist product does belong to
@@ -40,7 +40,7 @@ export class WishlistComponent implements OnInit {
   }
 
   // Remove  specific product form products array using product' code property
-  public removeProduct( item, productCode, wishlistData ) {
+   removeProduct( item, productCode, wishlistData ) {
     const productArray = item.products;
     for (let i = 0; i < productArray.length; i++) {
       if (productArray[i].code === productCode ) {
@@ -54,7 +54,7 @@ export class WishlistComponent implements OnInit {
     this.wishlistData = wishlistData;
   }
 
-  public onRemovedAlertClosed() {
+   onRemovedAlertClosed() {
     this.showRemovedProductAlert = false;
   }
 
