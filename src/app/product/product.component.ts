@@ -1,5 +1,4 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { throwError } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
@@ -33,7 +32,6 @@ export class ProductComponent implements OnInit {
    productToBeAddedToWishlist: any = {};
    newwishlist = '';
    showAddedProductAlert = false;
-   isFetchProductsFailed = false;
 
   constructor( private _productService: ProductService, private spinner: NgxSpinnerService, private modalService: BsModalService) { }
 
@@ -66,12 +64,6 @@ export class ProductComponent implements OnInit {
       this.totalItems = products.pagination.totalResults;
       this.pageSize = products.pagination.pageSize;
       this.spinner.hide();
-      this.isFetchProductsFailed = false;
-    }, (error) => {
-      console.log('Error fetching products');
-      this.isFetchProductsFailed = true;
-      this.spinner.hide();
-      return throwError(error);
     });
   }
 
