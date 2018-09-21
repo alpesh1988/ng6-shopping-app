@@ -33,6 +33,11 @@ describe('ProductComponent', () => {
     fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+  });
+  
+  afterEach(() => { 
+    component = null;
   });
 
   it('should create', () => {

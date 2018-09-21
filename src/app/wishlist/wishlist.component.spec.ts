@@ -24,6 +24,10 @@ describe('WishlistComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+  
+  afterEach(() => { 
+    component = null;
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
