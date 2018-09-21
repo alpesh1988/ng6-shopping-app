@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { APP_BASE_HREF } from '@angular/common';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SharedBootstrapModule } from './shared/shared-bootstrap.module';
 
@@ -31,7 +32,7 @@ import { FooterComponent } from './footer/footer.component';
     SharedBootstrapModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [{ provide: APP_BASE_HREF, useValue : '/' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
