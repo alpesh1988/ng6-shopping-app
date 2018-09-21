@@ -18,8 +18,8 @@ describe('FooterComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  
-  afterEach(() => { 
+
+  afterEach(() => {
     component = null;
   });
 

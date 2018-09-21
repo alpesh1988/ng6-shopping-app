@@ -10,7 +10,7 @@ import { SharedBootstrapModule } from './shared/shared-bootstrap.module';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
@@ -18,10 +18,9 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './not-found.component';
-import { HttpLoaderFactory } from "./app.module";
+import { HttpLoaderFactory } from './app.module';
 
 describe('AppComponent', () => {
-  let http: HttpClient;
   let translate: TranslateService;
 
   beforeEach(async(() => {

@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedBootstrapModule } from '../shared/shared-bootstrap.module';
 
 import { WishlistComponent } from './wishlist.component';
- 
+
 describe('WishlistComponent', () => {
   let component: WishlistComponent;
   let fixture: ComponentFixture<WishlistComponent>;
@@ -24,8 +24,8 @@ describe('WishlistComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-  
-  afterEach(() => { 
+
+  afterEach(() => {
     component = null;
   });
 

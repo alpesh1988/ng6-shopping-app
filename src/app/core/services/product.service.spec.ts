@@ -10,7 +10,7 @@ describe('ProductService', () => {
         HttpClientModule
       ],
     });
-  }); 
+  });
 
   it('ProductService should be created', inject([ProductService], (service: ProductService) => {
     expect(service).toBeTruthy();

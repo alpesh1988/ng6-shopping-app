@@ -35,8 +35,8 @@ describe('ProductComponent', () => {
     fixture.detectChanges();
 
   });
-  
-  afterEach(() => { 
+
+  afterEach(() => {
     component = null;
   });
 
