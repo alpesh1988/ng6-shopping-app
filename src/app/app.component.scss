@@ -1,0 +1,12 @@
+.alp-main-header {
+    margin: 1rem 0;
+
+    .alp-language {
+        cursor: pointer;
+
+        & + .alp-language:before {
+            content: "|";
+            padding: 1rem;
+        }
+    }
+}

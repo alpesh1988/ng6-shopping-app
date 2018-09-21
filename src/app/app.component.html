@@ -1,5 +1,16 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
+  <div class="alp-main-header">
+    <div class="row">
+      <div class="col-lg-10"><h3> {{ 'app.title' | translate }} </h3></div>
+      <div class="col-lg-2">
+        <div class="pull-right">
+          <a class="alp-language" (click)="useLanguage('en')">en</a>
+          <a class="alp-language" (click)="useLanguage('de')">de</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <app-header></app-header>
   <router-outlet></router-outlet>
   <app-footer></app-footer>
