@@ -65,6 +65,7 @@
       </div>
     </div>
   </div>
+  <h6 [hidden]="!isFetchProductsFailed">Problem occured while fetching products. Please try again later.</h6>
   <!-- pagination buttons -->
   <div class="alp-pagination">
     <pagination [totalItems]="totalItems" [boundaryLinks]="true" [itemsPerPage]="pageSize" (pageChanged)="changeCurrentPage($event)" [maxSize]="maxSize"></pagination>
